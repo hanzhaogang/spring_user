@@ -13,6 +13,17 @@ import java.util.*;
 @Table(name="t_document")
 public class Document {
 
+	//public static final int MAX_INT = 2147647;
+	
+	//public static final String ROOT_GouXing= "构型文件";
+	//public static final int ROOT_GouXing_ID = MAX_INT;
+
+	//public static final String ROOT_JiHe= "几何文件";
+	//public static final int ROOT_JiHe_ID = MAX_INT-1;
+
+	//public static final String ROOT_JiSuan= "计算文件";
+	//public static final int ROOT_JiSuan_ID = MAX_INT-2;
+
 	private int id;
 	private String name;
 	private String type;

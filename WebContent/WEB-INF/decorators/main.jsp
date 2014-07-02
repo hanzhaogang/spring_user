@@ -11,11 +11,43 @@
 <title><decorator:title default="欢迎使用用户管理系统"/></title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/main.css"/>
 <decorator:head/>
+
+
+<script language="JavaScript">
+
+function getOs()
+{
+    var OsObject = "";
+   if(navigator.userAgent.indexOf("MSIE")>0) {
+        return "MSIE";
+   }
+   if(isFirefox=navigator.userAgent.indexOf("Firefox")>0){
+        return "Firefox";
+   }
+   if(isSafari=navigator.userAgent.indexOf("Safari")>0) {
+        return "Safari";
+   } 
+   if(isCamino=navigator.userAgent.indexOf("Camino")>0){
+        return "Camino";
+   }
+   if(isMozilla=navigator.userAgent.indexOf("Gecko/")>0){
+        return "Gecko";
+   }
+  
+}
+// alert("您的浏览器类型为:"+getOs());
+</script> 
+
+
 </head>
 
 
 <body>
 <h1><decorator:title/></h1>
+<h2>
+<a href="<%=request.getContextPath() %>/doc/docs">返回文档列表页面</a>
+<a href="<%=request.getContextPath() %>/user/users">返回用户列表页面</a>
+</h2>
 
 <c:if test="${not empty loginUser}">
 <a href="<%=request.getContextPath() %>/user/add">用户添加</a>
@@ -39,6 +71,8 @@
 <p><script src="http://s95.cnzz.com/stat.php?id=5354960&web_id=5354960&show=pic" language="JavaScript"></script>
 	CopyRight By COMAC BASTRI@2012-2015<br/>
 </div>
+
+<p> 您正在使用类型为:<script type="text/javascript">getOs()</script>的浏览器浏览本站
 
 </body>
 

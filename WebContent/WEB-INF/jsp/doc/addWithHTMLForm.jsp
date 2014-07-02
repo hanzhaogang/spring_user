@@ -7,40 +7,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>普通HTML Form文档添加 </title>
-<script language="javascript" type="text/javascript" src="<%=request.getContextPath() %>/resources/js/My97DatePicker/WdatePicker.js">   
-</script>
+<script language="javascript" type="text/javascript" src="<%=request.getContextPath() %>/resources/js/My97DatePicker/WdatePicker.js">   </script>
 </head>
 
 <body>
-<input class="Wdate" type="text" onClick="WdatePicker()"> <font color=red> &lt; -Press me to show up the date plugin</font>
      <form>
 
 			<table width="700" align="center" border="1">
 			<tr>
-				<td>用户名:</td>
-				<td><sf:input path="username" />
-					<sf:errors path="username" />
+				<td>文档名称:</td>
+				<td><input id="username" />
 				</td>
 			</tr>
 			<tr>
 				<td>用户密码:</td>
-				<td><sf:password path="password" />
-					<sf:errors path="password" />
+				<td><input type="password" id="password" />
 				</td>
 			</tr>
 			<tr>
 				<td>用户昵称:</td>
 				<td>
-				    <sf:input path="nickname" />
+				    <input id="nickname" />
 				</td>
 			</tr>
 			<tr>
 				<td>用户邮箱:</td>
 				<td>
-				    <sf:input path="email" />
-					<sf:errors path="email" />
+				    <input id="email" />
 				</td>
 			</tr>
+
+			<tr>
+				<td>用户邮箱:</td>
+				<td><input class="Wdate" type="text" onClick="WdatePicker()" />
+				</td>
+			</tr>
+
 			<tr>
 			<td>上传文件</td>
 			<td>

@@ -12,6 +12,7 @@ public class Pager<T> {
 	}
 	public void setDatas(List<T> datas) {
 		this.datas = datas;
+
 	}
 	public int getOffset() {
 		return offset;
@@ -30,5 +31,8 @@ public class Pager<T> {
 	}
 	public void setTotal(long total) {
 		this.total = total;
+	}
+	public void testDatas(){
+	    datas.get(0);	
 	}
 }

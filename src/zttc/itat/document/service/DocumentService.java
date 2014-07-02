@@ -1,6 +1,8 @@
 package zttc.itat.document.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 import javax.annotation.Resource;
 
@@ -10,6 +12,7 @@ import zttc.itat.document.dao.IDocumentDao;
 import zttc.itat.model.Pager;
 import zttc.itat.document.model.Document;
 import zttc.itat.document.model.DocumentException;
+import zttc.itat.document.model.DocumentTree;
 
 @Service("documentService")
 public class DocumentService implements IDocumentService {
@@ -59,4 +62,13 @@ public class DocumentService implements IDocumentService {
 		return documentDao.find();
 	}
 
+	@Override
+	public Pager<Document> search(Map<String,Object> searchCondition) {
+		return documentDao.search(searchCondition);
+	}
+
+	@Override
+	public List<DocumentTree> generateTree() {
+		return documentDao.generateTree();
+	}
 }

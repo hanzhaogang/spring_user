@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <decorators defaultdir="/WEB-INF/decorators">
 
 
@@ -7,11 +8,12 @@
     <excludes>
         <pattern>/exclude.jsp</pattern>
         <pattern>/exclude/*</pattern>
+        <pattern>/doc/loadData2.jsp</pattern>
+
     </excludes>
 
 
     <decorator name="main" page="main.jsp">
-        <pattern>/*</pattern>
     </decorator>
 
 
