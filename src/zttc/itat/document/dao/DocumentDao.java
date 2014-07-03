@@ -84,7 +84,7 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 		if (onlyName) {
 			query = this.getSession() .createQuery("from Document where name=?") .setParameter(0, searchCondition.get("name"));
 		}
-		if (conditionResolver.onlyPid()) {
+		if (conditionResolver.onlyType()) {
 			query = this.getSession() .createQuery("from Document where type=?") .setParameter(0, searchCondition.get("type"));
 		}
 		if (conditionResolver.onlyCreater()) {

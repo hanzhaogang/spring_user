@@ -15,7 +15,7 @@
 	<td>文档名:</td><td>${document.name }</td>
 	</tr>
 	<tr>
-	<td>文档类型:</td><td>${document.pid}</td>
+	<td>文档类型:</td><td>${document.type}</td>
 	</tr>
 	<tr>
 	<td>文档创建者:</td><td>${document.creater}</td>

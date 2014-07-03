@@ -12,12 +12,12 @@ public class SearchConditionResolver {
 
 	public boolean onlyName(){
         boolean nameIsNull = conditionIsNull("name");
-        boolean pidIsNull = conditionIsNull("pid");
+        boolean typeIsNull = conditionIsNull("type");
         boolean createrIsNull = conditionIsNull("creater");
         boolean createTimeIsNull = conditionIsNull("createTime");
 
 		if ( (!nameIsNull)&&  
-             (pidIsNull)&& 
+             (typeIsNull)&& 
              (createrIsNull)&&
              (createTimeIsNull)
            ){
@@ -26,9 +26,9 @@ public class SearchConditionResolver {
 		return false;
 	}
 	
-	public boolean onlyPid(){
+	public boolean onlyType(){
 
-		if (!conditionIsNull("pid")&&  
+		if (!conditionIsNull("type")&&  
              conditionIsNull("name")&& 
              conditionIsNull("creater")&&
              conditionIsNull("createTime")){
@@ -40,7 +40,7 @@ public class SearchConditionResolver {
 
 		if (!conditionIsNull("creater")&&  
              conditionIsNull("name")&& 
-             conditionIsNull("pid")&&
+             conditionIsNull("type")&&
              conditionIsNull("createTime")){
             	return true;
             }
@@ -50,7 +50,7 @@ public class SearchConditionResolver {
 
 		if (!conditionIsNull("createTime")&&  
              conditionIsNull("name")&& 
-             conditionIsNull("pid")&&
+             conditionIsNull("type")&&
              conditionIsNull("creater")){
             	return true;
             }

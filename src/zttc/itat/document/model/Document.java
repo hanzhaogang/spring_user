@@ -3,6 +3,8 @@ package zttc.itat.document.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -26,7 +28,7 @@ public class Document {
 
 	private int id;
 	private String name;
-	private String pid;
+	private String type;
 	private String creater;
 	private String createTime;
 	private String path;
@@ -49,11 +51,12 @@ public class Document {
 		this.name = name;
 	}
 
-	public String getPid() {
-		return pid;
+	public String getType() {
+		return type;
 	}
-	public void setPid(String pid) {
-		this.pid = pid;
+	
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getCreater() {

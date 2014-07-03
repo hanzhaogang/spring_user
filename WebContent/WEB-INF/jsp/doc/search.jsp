@@ -10,9 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>文档检索</title>
 
-<link rel="stylesheet" pid="text/css" href="<%=request.getContextPath() %>/resources/css/screen.css" />
-<script pid="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.9.0.js"></script>
-<script pid="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.validate.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/screen.css" />
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.validate.js"></script>
 
 </head>
 
@@ -25,14 +25,14 @@
 <form id="searchCondition" method=post>
 <!-- when using jquery validation, we must define the name property of element input -->
 创  建  人 
-<input id="creater" pid="text" value="creater.." name= "creater"/><br>
+<input id="creater" type="text" value="creater.." name= "creater"/><br>
 创建时间
-<input id="createrTime" pid="text" value="createTime.." name= "createTime"/><br>
+<input id="createrTime" type="text" value="createTime.." name= "createTime"/><br>
 文档名称
-<input id="name" pid="text" value="name.." name="name"/><br>
+<input id="name" type="text" value="name.." name="name"/><br>
 
 		 文档类型
-		 <select id="pid" name="pid">
+		 <select id="type" name="type">
 			<option value=""></option>
 			<option value="1" class="s">普通文件</option>
 			<option value="2" class="s">几何文件</option>
@@ -40,7 +40,7 @@
 			<option value="4" class="s">计算文件</option>
 			<option value="5" class="s">其他文件</option>
 		</select> <br>
-<input pid="submit" id="btn"  value = "根据单一查询条件查询"/>
+<input type="submit" id="btn"  value = "根据单一查询条件查询"/>
 </form>
 
 
@@ -74,7 +74,7 @@
 					<td>${doc.id }</td>
 					<td><a href="${doc.id }">${doc.name}</a></td>
 					<td>${doc.path}</td>
-					<td>${doc.pid}</td>
+					<td>${doc.type}</td>
 					<td>${doc.creater}</td>
 					<td>${doc.createTime}</td>
 					<td><a href="${doc.id }/update">更新</a>&nbsp;

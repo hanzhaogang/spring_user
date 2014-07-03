@@ -38,7 +38,7 @@
 					<td>${doc.id }</td>
 					<td><a href="${doc.id }">${doc.name}</a></td>
 					<td>${doc.path}</td>
-					<td>${doc.pid}</td>
+					<td>${doc.type}</td>
 					<td>${doc.creater}</td>
 					<td>${doc.createTime}</td>
 					<td><a href="${doc.id }/update">更新</a>&nbsp;
