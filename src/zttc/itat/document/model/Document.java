@@ -26,7 +26,7 @@ public class Document {
 
 	private int id;
 	private String name;
-	private String type;
+	private String pid;
 	private String creater;
 	private String createTime;
 	private String path;
@@ -49,11 +49,11 @@ public class Document {
 		this.name = name;
 	}
 
-	public String getType() {
-		return type;
+	public String getPid() {
+		return pid;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 
 	public String getCreater() {

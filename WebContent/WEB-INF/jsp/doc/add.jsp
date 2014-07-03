@@ -28,7 +28,7 @@ $(function(){
 				minlength:3
 			},
 		    createTime:"required",
-		    type:"required",
+		    pid:"required",
 		    path:"required",
 		},
 		messages:{
@@ -41,7 +41,7 @@ $(function(){
 				minlength:"文档创建者姓名长度不能小于3"
 			},
 			createTime:"必须输入文档创建时间",
-			type:"必须选择文档类型",
+			pid:"必须选择文档类型",
 			path:"必须输入文档路径"
 		}
 	});
@@ -68,8 +68,8 @@ $(function(){
 
 			<tr>
 				<td>文档类型:</td>
-				<td><sf:input path="type" name="type"/>
-					<sf:errors path="type" />
+				<td><sf:input path="pid" name="pid"/>
+					<sf:errors path="pid" />
 				</td>
 			</tr>
 

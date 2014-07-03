@@ -182,28 +182,6 @@ public class DocumentController {
 	}
 
 //async test mappings
-	@RequestMapping(value="/jsonTest",method=RequestMethod.GET)
-	public String jsonTest() {
-		
-		return "doc/zTree/jsonTest";
-	}
-	@RequestMapping(value="/viewTest",method=RequestMethod.GET)
-	public String viewTest() {
-		
-		return "doc/zTree/viewTest";
-	}
-
-	@RequestMapping(value="/viewTest2",method=RequestMethod.GET)
-	public String viewTest2() {
-		
-		return "doc/zTree/viewTest2";
-	}
-
-	@RequestMapping(value="/jsonTest2",method=RequestMethod.GET)
-	public String jsonTest2() {
-		
-		return "doc/zTree/jsonTest2";
-	}
 
 	@RequestMapping("/treeAll")
 	public @ResponseBody List<DocumentTree> tree() {
@@ -216,39 +194,4 @@ public class DocumentController {
 		return "doc/zTree/async/treeList";
 	}
 
-//sync test mappings
-	@RequestMapping(value="/zTree/ztree2",method=RequestMethod.GET)
-	public String ztree2() {
-		
-		return "doc/zTree/ztree2";
-	}
-
-	@RequestMapping(value="/zTree/ztree",method=RequestMethod.GET)
-	public String zTreeList(Model model, HttpServletRequest request) {
-		
-		Pager<Document> us = new Pager<Document>();
-		us = documentService.find();
-		for (int i = 0; i<us.getDatas().size();i++){
-			
-		//System.out.println("us:-------->"+us.getDatas().get(i).getName()+"<--------------------------");
-		String key = "name"+i;
-		String value =  us.getDatas().get(i).getName();
-		System.out.println(key+","+value);
-		model.addAttribute(key, value);
-		model.addAttribute("pagers", documentService.find());
-		}
-
-        model.addAttribute("count", us.getDatas().size());
-
-		ArrayList<String> nameList = new ArrayList<String>();
-		for (int i = 0; i<us.getDatas().size();i++){
-		    String value =  us.getDatas().get(i).getName();
-            nameList.add(value);
-		}
-        //model.addAttribute("nameList", nameList);
-        request.setAttribute("nameList", nameList);
-
-		return "doc/zTree/ztree";
-		
-	}
 }

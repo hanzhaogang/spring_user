@@ -56,7 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>${doc.id }</td>
 					<td><a href="${doc.id }">${doc.name}</a></td>
 					<td>${doc.path}</td>
-					<td>${doc.type}</td>
+					<td>${doc.pid}</td>
 					<td>${doc.creater}</td>
 					<td>${doc.createTime}</td>
 					<td><a href="${doc.id }/update">¸üÐÂ</a>&nbsp;
