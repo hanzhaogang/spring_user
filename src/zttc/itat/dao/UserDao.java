@@ -61,8 +61,8 @@ public class UserDao extends HibernateDaoSupport implements IUserDao {
 		us.setOffset(offset);
 		us.setSize(size);
 		long total = (Long)this.getSession()
-					.createQuery("select count(*) from User")
-					.uniqueResult();
+					           .createQuery("select count(*) from User")
+					           .uniqueResult();
 		us.setTotal(total);
 		return us;
 	}
@@ -72,5 +72,4 @@ public class UserDao extends HibernateDaoSupport implements IUserDao {
 		return (User)this.getSession().createQuery("from User where username=?")
 					.setParameter(0, username).uniqueResult();
 	}
-
 }

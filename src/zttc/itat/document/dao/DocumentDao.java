@@ -119,8 +119,8 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 	@Override
 	public Document loadByName(String name) {
 		return (Document) this.getSession()
-				.createQuery("from Document where name=?")
-				.setParameter(0, name).uniqueResult();
+				              .createQuery("from Document where name=?")
+				              .setParameter(0, name).uniqueResult();
 	}
 
 	@Override
@@ -144,19 +144,18 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 		}
 	}
 
-	public <N extends Object>List<N> listBySql(String sql, Object[] args,
-			Map<String, Object> alias, Class<?> clz, boolean hasEntity) {
-//		sql = initSort(sql);
+	public <N extends Object>List<N> listBySql(
+			String sql, 
+			Object[] args,
+			Map<String, Object> alias, 
+			Class<?> clz, 
+			boolean hasEntity) {
 		SQLQuery sq = getSession().createSQLQuery(sql);
-		//setAliasParameter(sq, alias);
-		//setParameter(sq, args);
-		
 		if(hasEntity) {
 			sq.addEntity(clz);
-		} else 
+		} else {
 			sq.setResultTransformer(Transformers.aliasToBean(clz));
-		
+		};	
 		return sq.list();
 	}
-
 }

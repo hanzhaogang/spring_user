@@ -8,6 +8,7 @@ import zttc.itat.document.model.Document;
 import zttc.itat.document.model.DocumentTree;
 
 public interface IDocumentService {
+
 	public void add(Document document);
 	public void update(Document document);
 	public void delete(int id);

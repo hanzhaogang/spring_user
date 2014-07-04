@@ -36,8 +36,8 @@ public class SearchConditionResolver {
             }
 		return false;
 	}
-	public boolean onlyCreater(){
 
+	public boolean onlyCreater(){
 		if (!conditionIsNull("creater")&&  
              conditionIsNull("name")&& 
              conditionIsNull("type")&&
@@ -46,8 +46,8 @@ public class SearchConditionResolver {
             }
 		return false;
 	}
-	public boolean onlyCreateTime(){
 
+	public boolean onlyCreateTime(){
 		if (!conditionIsNull("createTime")&&  
              conditionIsNull("name")&& 
              conditionIsNull("type")&&
@@ -56,6 +56,7 @@ public class SearchConditionResolver {
             }
 		return false;
 	}
+
     //	this method's abstract level is lower than the others, which should be refactored later
 	public boolean conditionIsNull(String string){
 	    assert searchCondition != null;	

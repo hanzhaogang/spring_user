@@ -19,8 +19,6 @@ public class DocumentService implements IDocumentService {
 
 	private IDocumentDao documentDao;
 	
-	
-	
 	public IDocumentDao getDocumentDao() {
 		return documentDao;
 	}

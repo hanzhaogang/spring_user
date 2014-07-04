@@ -16,8 +16,6 @@ public class UserService implements IUserService {
 
 	private IUserDao userDao;
 	
-	
-	
 	public IUserDao getUserDao() {
 		return userDao;
 	}

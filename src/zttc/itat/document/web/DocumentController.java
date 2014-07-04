@@ -33,6 +33,7 @@ import zttc.itat.model.Pager;
 @Controller
 @RequestMapping("/doc")
 public class DocumentController {
+
 	private IDocumentService documentService;
 
 	public IDocumentService getDocumentService() {
@@ -77,9 +78,7 @@ public class DocumentController {
 	public String add(  @Validated Document document,
 			            BindingResult br,
 			            @RequestParam("attachs")MultipartFile[] attachs,
-			            HttpServletRequest req
-			         ) throws IOException {
-		
+			            HttpServletRequest req) throws IOException {
 		if(br.hasErrors()) {
 			return "doc/add";
 		}
@@ -127,11 +126,6 @@ public class DocumentController {
 		return "redirect:/doc/docs";
 	}
 
-	@RequestMapping(value="/download",method=RequestMethod.GET)
-	public String download() {
-		
-		return "doc/download";
-	}
 
 //async test mappings
 
@@ -142,7 +136,7 @@ public class DocumentController {
 
 	@RequestMapping("/treeList")
 	public String treeList(Model model) {
-		return "doc/zTree/async/treeList";
+		return "doc/treeList";
 	}
 
 }

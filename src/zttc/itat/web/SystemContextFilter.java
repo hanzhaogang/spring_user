@@ -19,13 +19,16 @@ public class SystemContextFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req,
+			             ServletResponse resp,
+			             FilterChain chain) throws IOException, ServletException {
 		int offset = 0;
+
 		try {
 			offset = Integer.parseInt(req.getParameter("pager.offset"));
 		} catch (NumberFormatException e) {
 		}
+
 		try {
 			SystemContext.setOffset(offset);
 			SystemContext.setSize(15);

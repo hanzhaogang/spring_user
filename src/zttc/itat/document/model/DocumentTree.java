@@ -47,8 +47,6 @@ public class DocumentTree {
 
 	@Override
 	public String toString() {
-		return "ChannelTree [id=" + id + ", name=" + name + ", pid=" + pid
-				+ "]";
+		return "ChannelTree [id=" + id + ", name=" + name + ", pid=" + pid + "]";
 	}
-	
 }

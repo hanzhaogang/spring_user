@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -19,8 +18,7 @@
 			</tr>
 			<tr>
 				<td>文档路径:</td>
-				<td><sf:input path="path" />
-					<sf:errors path="path" /></td>
+				<td><sf:input path="path" /> <sf:errors path="path" /></td>
 			</tr>
 			<tr>
 				<td>文档类型：</td>
@@ -28,13 +26,12 @@
 			</tr>
 			<tr>
 				<td>文档创建者:</td>
-				<td><sf:input path="creater" />
-					<sf:errors path="creater" /></td>
+				<td><sf:input path="creater" /> <sf:errors path="creater" /></td>
 			</tr>
 			<tr>
 				<td>文档创建时间:</td>
-				<td><sf:input path="createTime" />
-					<sf:errors path="createTime" /></td>
+				<td><sf:input path="createTime" /> <sf:errors
+						path="createTime" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="文档更新" /></td>

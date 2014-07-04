@@ -21,7 +21,9 @@ public class LoginFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) 
+	public void doFilter(ServletRequest req,
+			             ServletResponse resp,
+			             FilterChain chain) 
 			            throws IOException, ServletException {
 		
 		HttpServletRequest hsq = (HttpServletRequest)req;
@@ -29,7 +31,6 @@ public class LoginFilter implements Filter {
 		if(u==null) {
 			((HttpServletResponse)resp).sendRedirect(hsq.getContextPath()+"/login");
 		}
-		
 		chain.doFilter(req, resp);
 	}
 

@@ -38,5 +38,4 @@ public class UserForm {
 	public void setPath(String path) {
 		this.path = path;
 	}
-
 }

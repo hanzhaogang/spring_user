@@ -2,9 +2,6 @@ package zttc.itat.model;
 
 public class UserException extends RuntimeException {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public UserException() {
@@ -26,6 +23,5 @@ public class UserException extends RuntimeException {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
-
 	
 }

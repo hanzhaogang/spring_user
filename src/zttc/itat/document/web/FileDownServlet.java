@@ -14,8 +14,8 @@ public class FileDownServlet extends HttpServlet {
     }
 
     //Process the HTTP Get request
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
+    public void doGet(HttpServletRequest request, 
+    		          HttpServletResponse response) throws ServletException, IOException {
 
     	response.setContentType(CONTENT_TYPE);
     
@@ -26,7 +26,8 @@ public class FileDownServlet extends HttpServlet {
         String filename=new String(request.getParameter("filename").getBytes("iso-8859-1"),"gbk");
 
         //创建file对象
-        File file=new File("D://9.software/devEnv/springToolSuite/sts-3.5.0.RELEASE/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/spring_user/resources/upload//"+filename);
+        File file=new File(
+        		"D://9.software/devEnv/springToolSuite/sts-3.5.0.RELEASE/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/spring_user/resources/upload//"+filename);
         
         //设置response的编码方式
         response.setContentType("application/x-msdownload");
@@ -67,8 +68,9 @@ public class FileDownServlet extends HttpServlet {
     }
 
     //Process the HTTP Post request
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
+    public void doPost(
+    		HttpServletRequest request,
+    		HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 

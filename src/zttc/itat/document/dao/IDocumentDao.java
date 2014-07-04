@@ -6,8 +6,8 @@ import java.util.Map;
 import zttc.itat.model.Pager;
 import zttc.itat.document.model.*;
 
-
 public interface IDocumentDao {
+
 	public void add(Document document);
 	public void update(Document document);
 	public void delete(int id);

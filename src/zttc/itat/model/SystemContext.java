@@ -1,6 +1,7 @@
 package zttc.itat.model;
 
 public class SystemContext {
+
 	private static ThreadLocal<Integer> offset = new ThreadLocal<Integer>();
 	private static ThreadLocal<Integer> size = new ThreadLocal<Integer>();
 	
@@ -23,5 +24,4 @@ public class SystemContext {
 	public static void removeSize() {
 		size.remove();
 	}
-	
 }

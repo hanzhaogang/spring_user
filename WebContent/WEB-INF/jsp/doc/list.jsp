@@ -23,13 +23,11 @@
 			<td>操作</td>
 		</tr>
 
-
 		<c:if test="${pagers.total le 0 }">
 			<tr>
 				<td colspan="6">目前还没有文档数据</td>
 			</tr>
 		</c:if>
-
 
 		<c:if test="${pagers.total gt 0}">
 
@@ -43,12 +41,10 @@
 					<td>${doc.createTime}</td>
 					<td><a href="${doc.id }/update">更新</a>&nbsp;
 					    <a href="${doc.id }/delete">删除</a>&nbsp;
-					    <a href="${doc.id }/download">下载</a>&nbsp;
 					    <a href="<%=request.getContextPath() %>/FileDownServlet?filename=${doc.name }" >download</a>
 					</td>
 				</tr>
 			</c:forEach>
-
 
 			<tr>
 				<td colspan="6"><jsp:include page="/inc/pager.jsp">
@@ -62,10 +58,8 @@
 	</table>
 	
 <a href="<%=request.getContextPath() %>/doc/add">文档添加</a>
-<a href="<%=request.getContextPath() %>/doc/download">文档下载</a>
 <a href="<%=request.getContextPath() %>/doc/search">文档检索</a>
 
 </body>
-
 
 </html>
