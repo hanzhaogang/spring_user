@@ -45,7 +45,7 @@ $(function(){
 <body>
 <div id="content">
 	<h3 class="admin_link_bar">
-		<span>正在使用栏目管理功能</span>
+		<span>正在使用文件树形浏览功能</span>
 	</h3>
 	<TABLE border=0 align=left height="600px">
 		<TR>

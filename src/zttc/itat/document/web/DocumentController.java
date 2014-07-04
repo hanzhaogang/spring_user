@@ -73,7 +73,6 @@ public class DocumentController {
 		return "doc/add";
 	}
 	
-	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String add(  @Validated Document document,
 			            BindingResult br,
@@ -98,54 +97,7 @@ public class DocumentController {
 		return "redirect:/doc/docs";
 	}
 	
-	@RequestMapping(value="/addTest",method=RequestMethod.GET)
-	public String addTest() {
-		//model.addAttribute(new Document());
-		return "doc/addTest";
-	}
-
-	@RequestMapping(value="/addTest",method=RequestMethod.POST)  
-	    public String addTest( 
-	    		@ModelAttribute("form") UserForm form,  
-                @RequestParam("hiddenNumber") String hiddenNumber){  
-        
-		
-		System.out.println(form.toString() + "-->" + hiddenNumber);  
-	        return "/user/list"; 
-	    }  
 	
-	
-	//@RequestMapping(value="/add",method=RequestMethod.GET)
-	//public String add() {
-	//	//model.addAttribute(new Document());
-	//	return "doc/add";
-	//}
-	// 
-	//  
-	//  
-	//@RequestMapping(value="/add",method=RequestMethod.POST)
-	//public String add(  @Validated Document document,
-	//		            BindingResult br,
-	//		            @RequestParam("attachs")MultipartFile[] attachs,
-	//		            HttpServletRequest req
-	//		         ) throws IOException {
-	
-	//	if(br.hasErrors()) {
-	//		return "doc/add"; 
-	//	}
-
-	//	String realpath = req.getSession().getServletContext().getRealPath("/resources/upload");
-	//	System.out.println(realpath);
-	//	
-	//	for(MultipartFile attach:attachs) {
-	//		if(attach.isEmpty()) continue;
-	//		File f = new File(realpath+"/"+attach.getOriginalFilename());
-	//		FileUtils.copyInputStreamToFile(attach.getInputStream(),f);
-	//	}
-	
-	//	documentService.add(document);
-	//	return "redirect:/document/documents";
-	//}
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	public String show(@PathVariable int id,Model model) {
 		model.addAttribute(documentService.load(id));
@@ -190,7 +142,6 @@ public class DocumentController {
 
 	@RequestMapping("/treeList")
 	public String treeList(Model model) {
-//		model.addAttribute("treeDatas", JsonUtil.getInstance().obj2json(channelService.generateTree()));
 		return "doc/zTree/async/treeList";
 	}
 

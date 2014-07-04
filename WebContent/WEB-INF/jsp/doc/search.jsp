@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 
@@ -14,6 +13,37 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.9.0.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.validate.js"></script>
 
+<script type="text/javascript">
+$(function(){
+	$("#searchCondition").validate({
+		rules:{
+			name:{
+				required:true,
+				minlength:3
+			},
+			creater:{
+				required:true,
+				minlength:3
+			},
+		    createTime:"required",
+		    type:"required",
+		},
+		messages:{
+			name:{
+				required:"必须输入要搜索的文档名称",
+				minlength:"文档名称长度不能小于3"
+			},
+			creater:{
+				required:"必须输入要搜索的文档创建者",
+				minlength:"文档创建者姓名长度不能小于3"
+			},
+			createTime:"必须输入要搜索的文档创建时间",
+			type:"必须选择待搜索文档的类型",
+		}
+	});
+});
+</script>
+
 </head>
 
 <body>
@@ -22,7 +52,8 @@
 按数据名称、创建人、数据创建时间、修改时间、数据类型等条件查询，显示相应结果及数据路径。 文件名称含链接（支持另存，直接打开）；支持批量下载。
 <br><br>
 
-<form id="searchCondition" method=post>
+<!-- 此时没有写action,直接提交会提交给/add -->
+<sf:form id="searchCondition" method="post" >
 <!-- when using jquery validation, we must define the name property of element input -->
 创  建  人 
 <input id="creater" type="text" value="creater.." name= "creater"/><br>
@@ -41,7 +72,7 @@
 			<option value="5" class="s">其他文件</option>
 		</select> <br>
 <input type="submit" id="btn"  value = "根据单一查询条件查询"/>
-</form>
+</sf:form>
 
 
 <hr>
