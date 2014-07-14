@@ -2,7 +2,6 @@ package zttc.itat.document.service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import javax.annotation.Resource;
 

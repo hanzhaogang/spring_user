@@ -4,10 +4,22 @@ import java.util.List;
 
 public class Pager<T> {
 
-	private List<T> datas;
-	private int offset;
+	/**
+	 * 分页的大小
+	 */
 	private int size;
+	/**
+	 * 分页的起始页
+	 */
+	private int offset;
+	/**
+	 * 总记录数
+	 */
 	private long total;
+	/**
+	 * 分页的数据
+	 */
+	private List<T> datas;
 
 	public List<T> getDatas() {
 		return datas;

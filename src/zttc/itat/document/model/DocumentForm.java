@@ -1,6 +1,6 @@
 package zttc.itat.document.model;
 
-public class UserForm {
+public class DocumentForm {
    
 	private int id;
 	private String name;

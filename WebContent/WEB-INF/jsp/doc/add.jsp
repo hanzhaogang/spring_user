@@ -56,39 +56,36 @@
 		<table width="700" align="center" border="1">
 			<tr>
 				<td>文档名称:</td>
-				<td><sf:input path="name" name="name"/>
-					<sf:errors path="name" />
-				</td>
+				<td><sf:input path="name" name="name"/> </td>
 			</tr>
 
 			<tr>
 				<td>文档类型:</td>
-				<td><sf:input path="type" name="type"/>
-					<sf:errors path="type" />
-				</td>
+				<td>
+				
+				<sf:select id="type" path="type"  style="width:150" name="state" value="$!{state}">
+                      <OPTION value="-5" SELECTED>其他文件</OPTION>
+                      <OPTION value="-4">普通文件</OPTION>
+                      <OPTION value="-3" >计算结果文件</OPTION>
+                      <OPTION value="-2">几何文件</OPTION>
+                      <OPTION value="-1">构型文件</OPTION>
+                </sf:select> 
+</td>
 			</tr>
 
 			<tr>
 				<td>文档路径:</td>
-				<td>
-				    <sf:input path="path" name="path"/>
-				</td>
+				<td> <sf:input path="path" name="path"/> </td>
 			</tr>
 
 			<tr>
 				<td>文档创建者:</td>
-				<td>
-				    <sf:input path="creater" name="creater" />
-					<sf:errors path="creater" />
-				</td>
+				<td> <sf:input path="creater" name="creater" /> </td>
 			</tr>
 			
 			<tr>
 				<td>文档创建时间:</td>
-				<td >
-				     <sf:input class="Wdate" type="text" onClick="WdatePicker()" path="createTime" name="createTime"/> 
-					 <sf:errors path="createTime" />
-				</td>
+				<td > <sf:input class="Wdate" type="text" onClick="WdatePicker()" path="createTime" name="createTime"/> </td>
 			</tr>
 
 			<tr>
@@ -107,9 +104,7 @@
 			</tr>
 
 			<tr>
-				<td colspan="2">
-				    <input type="submit" value="文档添加" />
-				</td>
+				<td colspan="2"> <input type="submit" value="文档添加" /> </td>
 			</tr>
 	
 		</table>

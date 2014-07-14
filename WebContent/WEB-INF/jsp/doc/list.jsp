@@ -41,7 +41,7 @@
 					<td>${doc.createTime}</td>
 					<td><a href="${doc.id }/update">更新</a>&nbsp;
 					    <a href="${doc.id }/delete">删除</a>&nbsp;
-					    <a href="<%=request.getContextPath() %>/FileDownServlet?filename=${doc.name }" >download</a>
+					    <a href="<%=request.getContextPath() %>/FileDownServlet?filename=${doc.name }" >下载</a>
 					</td>
 				</tr>
 			</c:forEach>

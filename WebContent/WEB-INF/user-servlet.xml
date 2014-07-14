@@ -26,10 +26,11 @@
 	</bean>
 	
 	
-	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<bean id="ExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="zttc.itat.model.UserException">error</prop>
+				<prop key="zttc.itat.model.UserException">index</prop>
+				<prop key="zttc.itat.model.AddUserException">error</prop>
 			</props>
 		</property>
 	</bean>

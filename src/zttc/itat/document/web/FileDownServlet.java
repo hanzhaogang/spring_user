@@ -3,7 +3,6 @@ package zttc.itat.document.web;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
-import java.util.*;
 
 public class FileDownServlet extends HttpServlet {
 
@@ -49,20 +48,19 @@ public class FileDownServlet extends HttpServlet {
 
         byte [] b=new byte[1024];//相当于我们的缓存
 
-        long k=0;//该值用于计算当前实际下载了多少字节
-
         //从response对象中得到输出流,准备下载
         OutputStream myout=response.getOutputStream();
 
+        long downloadedBytes=0;
         //开始循环下载
-        while(k<file.length()){
+        while(downloadedBytes<file.length()){
             int j=buff.read(b,0,1024);
-            k+=j;
+            downloadedBytes+=j;
 
             //将b中的数据写到客户端的内存
             myout.write(b,0,j);
         }
-
+        buff.close();
         //将写入到客户端的内存的数据,刷新到磁盘
         myout.flush();
     }

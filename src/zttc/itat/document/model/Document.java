@@ -3,13 +3,7 @@ package zttc.itat.document.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-import java.util.*;
 
 @Entity
 @Table(name="t_document")

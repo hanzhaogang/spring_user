@@ -47,13 +47,11 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 		return this.getHibernateTemplate().load(Document.class, id);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Document> list() {
 		return this.getSession().createQuery("from Document").list();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Pager<Document> find() {
 		int size = SystemContext.getSize();
@@ -71,8 +69,6 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 		return us;
 	}
 
-	@SuppressWarnings("unchecked")
-	// 该批注的作用是给编译器一条指令，告诉它对被批注的代码元素内部的某些警告保持静默。
 	@Override
 	public Pager<Document> search(Map<String, Object> searchCondition) {
 		int size = SystemContext.getSize();
@@ -115,7 +111,6 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 //		return "select new document(d.id,d.name,d.type,d.creater,d.createTime,d.path)";
 //	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Document loadByName(String name) {
 		return (Document) this.getSession()

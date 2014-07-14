@@ -35,8 +35,10 @@
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="文档更新" /></td>
+				<td colspan="2"><input type="button" value="取消更新" onClick=javascript:history.go(-1) /></td>
 			</tr>
 		</table>
 	</sf:form>
+	<div id="upPage"><a href="">返回上一页</a></div>
 </body>
 </html>

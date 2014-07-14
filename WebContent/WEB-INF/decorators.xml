@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <decorators defaultdir="/WEB-INF/decorators">
-
 
     <!-- Any urls that are excluded will never be decorated by Sitemesh -->
     <excludes>
         <pattern>/exclude.jsp</pattern>
         <pattern>/exclude/*</pattern>
-        <pattern>/doc/loadData2.jsp</pattern>
+        <pattern>/index</pattern>
+        <pattern>/index</pattern>
+        <pattern>/doc/{id}/*</pattern>
 
     </excludes>
 
-
-    <decorator name="main" page="main.jsp">
-        <pattern>/*</pattern>
+    <decorator name="accountMain" page="accountMain.jsp">
+        <pattern>/user/*</pattern>
     </decorator>
 
+    <decorator name="dataMain" page="dataMain.jsp">
+        <pattern>/doc/treeList</pattern>
+        <pattern>/doc/add</pattern>
+        <pattern>/doc/search</pattern>
+        <pattern>/doc/{id}/update</pattern>
+        <pattern>/doc/{id}/delete</pattern>
+    </decorator>
 
 </decorators>

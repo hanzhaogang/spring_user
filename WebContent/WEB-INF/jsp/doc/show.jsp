@@ -5,10 +5,20 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>文档[${document.name}]详细信息</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/doc/show.css"/>
+<script language="javascript">
+    function delcfm() {
+        if (!confirm("确认要删除？")) {
+        return false;
+        }else{
+        }
+    }
+</script>
 </head>
 
 <body>
+    <h1>文档[${document.name}]详细信息如下:</h1>
+    <div>
 	<table width="700" align="center" border="1">
 		<tr>
 			<td>文档标识:</td>
@@ -31,6 +41,12 @@
 			<td>${document.createTime}</td>
 		</tr>
 	</table>
+    </div>
+    <div id="operation">	
+       <a href="${document.id }/update">更新</a>&nbsp;
+       <a href="${document.id }/delete" onClick="return delcfm();">删除</a>&nbsp;
+       <a href="<%=request.getContextPath() %>/FileDownServlet?filename=${document.name }" >下载</a>
+    </div>
 </body>
 
 </html>

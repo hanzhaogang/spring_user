@@ -29,7 +29,7 @@ public class LoginFilter implements Filter {
 		HttpServletRequest hsq = (HttpServletRequest)req;
 		User u = (User)hsq.getSession().getAttribute("loginUser");
 		if(u==null) {
-			((HttpServletResponse)resp).sendRedirect(hsq.getContextPath()+"/login");
+			((HttpServletResponse)resp).sendRedirect(hsq.getContextPath()+"/index");
 		}
 		chain.doFilter(req, resp);
 	}
@@ -38,5 +38,4 @@ public class LoginFilter implements Filter {
 	public void init(FilterConfig arg0) throws ServletException {
 
 	}
-
 }

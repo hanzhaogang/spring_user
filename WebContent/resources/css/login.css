@@ -1,0 +1,14 @@
+#mainFrame {
+	margin-top: 100px;
+	margin-left:320px;
+}
+#loginForm {
+	border: 1px solid ;
+	width: 500px;
+	heigth: 300px;
+	padding-top:10px;
+	padding-left:10px;
+}
+#promption {
+	color: #ff0000;
+}

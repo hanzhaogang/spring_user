@@ -8,12 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>文档检索</title>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath() %>/resources/css/screen.css" />
-<script type="text/javascript"
-	src="<%=request.getContextPath() %>/resources/js/jquery-1.9.0.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath() %>/resources/js/jquery.validate.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/screen.css" />
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.validate.js"></script>
 
 <script type="text/javascript">
 $(function(){

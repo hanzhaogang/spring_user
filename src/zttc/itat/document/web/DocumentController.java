@@ -2,12 +2,10 @@ package zttc.itat.document.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.inject.Inject;
 
@@ -26,9 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import zttc.itat.document.model.Document;
 import zttc.itat.document.model.DocumentTree;
-import zttc.itat.document.model.UserForm;
 import zttc.itat.document.service.IDocumentService;
-import zttc.itat.model.Pager;
 
 @Controller
 @RequestMapping("/doc")
@@ -117,15 +113,14 @@ public class DocumentController {
 		Document tu = documentService.load(id);
 		tu.setCreateTime(document.getCreateTime());
 		documentService.update(tu);
-		return "redirect:/doc/docs";
+		return "doc/operationSucceed";
 	}
 	
 	@RequestMapping(value="/{id}/delete",method=RequestMethod.GET)
 	public String delete(@PathVariable int id) {
 		documentService.delete(id);
-		return "redirect:/doc/docs";
+		return "doc/operationSucceed";
 	}
-
 
 //async test mappings
 

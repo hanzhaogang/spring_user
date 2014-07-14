@@ -1,12 +1,11 @@
 package zttc.itat.service;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import zttc.itat.dao.IUserDao;
+import zttc.itat.model.AddUserException;
 import zttc.itat.model.Pager;
 import zttc.itat.model.User;
 import zttc.itat.model.UserException;
@@ -28,7 +27,7 @@ public class UserService implements IUserService {
 	@Override
 	public void add(User user) {
 		User u = userDao.loadByUsername(user.getUsername());
-		if(u!=null) throw new UserException("要添加的用户已经存在");
+		if(u!=null) throw new AddUserException("要添加的用户已经存在");
 		userDao.add(user);
 	}
 
@@ -45,11 +44,6 @@ public class UserService implements IUserService {
 	@Override
 	public User load(int id) {
 		return userDao.load(id);
-	}
-
-	@Override
-	public List<User> list() {
-		return userDao.list();
 	}
 
 	@Override

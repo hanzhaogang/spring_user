@@ -50,3 +50,4 @@ public class DocumentTree {
 		return "ChannelTree [id=" + id + ", name=" + name + ", pid=" + pid + "]";
 	}
 }
+

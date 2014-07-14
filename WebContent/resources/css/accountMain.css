@@ -1,0 +1,21 @@
+#hrefs {
+	width:100%;
+}
+#currentUser {
+	margin-left:10px;
+}
+#logout {
+	color:#0f0;
+	margin-left:550px;
+}
+#mainFrame {
+	width:1020px;
+	height:720px;
+	margin-left:90px;
+}
+#bottom {
+	position:absolute;
+	width:1020px;
+	height:220px;
+	top:510px;
+}

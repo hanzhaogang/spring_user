@@ -6,19 +6,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>数据库系统首页</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/login.css"/>
 </head>
 
 <body>
 
-	<div></div>
-	<div>
-		<h1>Welcome to the A.T. design database system</h1>
-		<a href="/doc/docs">Data Management</a>&nbsp; 
-		<a href="/user/users">Account Management</a>&nbsp;
-		<ul></ul>
+	<div align=center>
+    	    <img src="<%=request.getContextPath() %>/resources/pic/logo1.png"/>
 	</div>
-	<div></div>
+	<div align=center>
+		<h1>Welcome to the A.T. design database system</h1>
+	</div>
 
+    <div id ="mainFrame">
+        <h1 id ="prompt">使用前请先登录：</h1>
+    	<form id = "loginForm" method="post">
+    		用户名:  <input type="text" name="username" /><br />
+                                  用户密码: <input type="password" name="password" /><br /> 
+    		       <input type="submit" value="用户登录" />
+    	</form>
+    <h2 id = "promption">${exception.message }</h2>
+    </div>	
 </body>
 
 </html>
+

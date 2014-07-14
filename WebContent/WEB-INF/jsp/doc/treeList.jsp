@@ -33,30 +33,28 @@
 			},
 			callback : {
 				onClick : function(event, treeId, treeNode) {
-					$("#cc").attr(
+					$("#showDetails").attr(
 							"src",
 							"http://localhost:8080/spring_user/doc/"
 									+ treeNode.id);
 				}
 			}
 		};
-		var t = $.fn.zTree.init($("#tree"), setting);
+		$.fn.zTree.init($("#tree"), setting);
 	});
 </script>
 </head>
 
 <body>
 	<div id="content">
-		<h3 class="admin_link_bar">
-			<span>正在使用文件树形浏览功能</span>
-		</h3>
-		<TABLE border=0 align=left height="600px">
+		<h3 class="admin_link_bar"> </h3>
+		<TABLE border=0 align=left height="200px">
 			<TR>
 				<TD width=150px align=left valign=top style="BORDER-RIGHT: #999999 1px dashed">
 					<ul id="tree" class="ztree" style="width: 150px; overflow: auto;"></ul>
 				</TD>
-				<TD width=650px align=left valign=top>
-    				<IFRAME ID="cc" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100% height=600px></IFRAME>
+				<TD width=850px align=left valign=top>
+    				<IFRAME ID="showDetails" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100% height=300px></IFRAME>
 				</TD>
 			</TR>
 		</TABLE>

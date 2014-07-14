@@ -93,6 +93,7 @@ id="WebApp_ID" version="2.5">
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/user/*</url-pattern>
 		<url-pattern>/doc/*</url-pattern>
+		<url-pattern>/login</url-pattern>
 	</filter-mapping>
       
       

@@ -42,12 +42,13 @@ public class UserDao extends HibernateDaoSupport implements IUserDao {
 		return this.getHibernateTemplate().load(User.class, id);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> list() {
-		return this.getSession().createQuery("from User").list();
+	public User loadByUsername(String username) {
+		return (User)this.getSession().createQuery("from User where username=?")
+					.setParameter(0, username).uniqueResult();
 	}
 
+	// 该批注的作用是给编译器一条指令，告诉它对被批注的代码元素内部的某些警告保持静默。
 	@SuppressWarnings("unchecked")
 	@Override
 	public Pager<User> find() {
@@ -56,20 +57,16 @@ public class UserDao extends HibernateDaoSupport implements IUserDao {
 		Query query = this.getSession().createQuery("from User");
 		query.setFirstResult(offset).setMaxResults(size);
 		List<User> datas = query.list();
-		Pager<User> us = new Pager<User>();
-		us.setDatas(datas);
-		us.setOffset(offset);
-		us.setSize(size);
+
+		Pager<User> userPager = new Pager<User>();
+		userPager.setDatas(datas);
+		userPager.setOffset(offset);
+		userPager.setSize(size);
 		long total = (Long)this.getSession()
 					           .createQuery("select count(*) from User")
 					           .uniqueResult();
-		us.setTotal(total);
-		return us;
+		userPager.setTotal(total);
+		return userPager;
 	}
 
-	@Override
-	public User loadByUsername(String username) {
-		return (User)this.getSession().createQuery("from User where username=?")
-					.setParameter(0, username).uniqueResult();
-	}
 }
