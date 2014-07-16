@@ -55,6 +55,7 @@ $(function(){
 		<!-- when using jquery validation, we must define the name property of element input -->
                         创  建  人 <input id="creater" type="text" value="creater.." name="creater" /> <br>
                         创建时间 <input id="createrTime" type="text" value="createTime.." name="createTime" /> <br>
+				<td > <sf:input class="Wdate" type="text" onClick="WdatePicker()" path="createTime" name="createTime"/> </td>
                        文档名称 <input id="name" type="text" value="name.." name="name" /> <br>
 	           文档类型 <select id="type" name="type">
 		    	<option value=""></option>

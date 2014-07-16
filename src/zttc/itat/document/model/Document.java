@@ -21,12 +21,21 @@ public class Document {
 	//public static final int ROOT_JiSuan_ID = MAX_INT-2;
 
 	private int id;
+    private int pid;
 	private String name;
 	private String type;
 	private String creater;
 	private String createTime;
 	private String path;
-	
+    
+	public int getPid() {
+		return pid;
+	}
+
+	public void setPid(int pid) {
+		this.pid = pid;
+	}
+
 	@GeneratedValue
 	@Id
 	public int getId() {

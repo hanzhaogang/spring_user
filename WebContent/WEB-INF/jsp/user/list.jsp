@@ -7,6 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户列表</title>
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user/userList.css"/>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.cms.core.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 <script type="text/javascript">
 function delcfm() {
         if (!confirm("确认要删除？")) {
@@ -17,16 +22,19 @@ function delcfm() {
 </head>
 
 <body>
-	<table width="700" align="center" border="1">
-		<tr>
-			<td>用户标识:</td>
-			<td>用户名</td>
-			<td>用户昵称</td>
-			<td>用户密码</td>
-			<td>用户邮箱</td>
-			<td>操作</td>
-		</tr>
-
+    <div id= "content">
+	<table width="800" cellspacing="0" cellPadding="0" id="listTable" >
+		<thead>
+	    	<tr>
+	    		<td>用户标识:</td>
+	    		<td>用户名</td>
+	    		<td>用户昵称</td>
+	    		<td>用户密码</td>
+	    		<td>用户邮箱</td>
+	    		<td>操作</td>
+	    	</tr>
+		</thead>
+        
 		<c:if test="${pagers.total le 0 }">
 			<tr>
 				<td colspan="6">目前还没有用户数据</td>
@@ -36,6 +44,7 @@ function delcfm() {
 		<c:if test="${pagers.total gt 0}">
 
 			<c:forEach items="${pagers.datas }" var="u">
+        <tbody>
 				<tr>
 					<td>${u.id }</td>
 					<td>${u.username }</td>
@@ -46,17 +55,23 @@ function delcfm() {
 					    <a href="${u.id }/delete" onClick="return delcfm();">删除</a>
 					</td>
 				</tr>
+            </tbody>
 			</c:forEach>
 
+			<tfoot>
 			<tr>
-				<td colspan="6"><jsp:include page="/inc/pager.jsp">
+				<td colspan="6">
+				    <jsp:include page="/inc/pager.jsp">
 						<jsp:param name="url" value="users" />
 						<jsp:param name="items" value="${pagers.total}" />
-					</jsp:include></td>
+					</jsp:include>
+				</td>
 			</tr>
+			</tfoot>
 
 		</c:if>
 	</table>
+    </div>
 </body>
 
 </html>

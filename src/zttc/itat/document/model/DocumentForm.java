@@ -6,7 +6,16 @@ public class DocumentForm {
 	private String name;
 	private String type;
 	private String path;
-	
+    private String creater;
+    
+	public String getCreater() {
+		return creater;
+	}
+
+	public void setCreater(String creater) {
+		this.creater = creater;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -1,0 +1,38 @@
+
+#content table {
+	margin-top:15px;
+	margin-left:90px;
+	font-size:14px;
+	border-top:1px solid #999;
+	border-left:1px solid #999;
+	padding:0px;
+}
+
+
+#content table tr td {
+	padding:6px;
+	border-right:1px solid #999;
+	border-bottom:1px solid #999;
+	text-align:center;
+
+}
+
+#content table tfoot td{
+	background:#336d9b;
+	color:#fff;
+	margin:0px;
+}
+#content table thead td{
+	background:#336d9b;
+	color:#fff;
+	margin:0px;
+}
+
+.trMouseover {
+	background:#bbb;
+	color:#fff;
+}
+
+.trEvenColor {
+	background:#e1e1e9;
+}
