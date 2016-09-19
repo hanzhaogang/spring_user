@@ -13,9 +13,19 @@ import zttc.itat.model.Pager;
 import zttc.itat.model.SystemContext;
 import zttc.itat.model.User;
 
+// http://www.cnblogs.com/zhangzhifeng/p/4228498.html
+/*
+ * Repository stands for beans in dao layer.
+ */
 @Repository("userDao")
 public class UserDao extends HibernateDaoSupport implements IUserDao {
 	
+	/*
+	 * @Resource & @Autowired both can denote an DI. 
+	 * In below setter method, a bean managed by Spring named "sessionFactory" will be injected into this method.
+	 * @Resource is an notation of Java, while @Autowired is an notation by Spring.
+	 * @Resource is injected by name, while @Autowired is injected by type. 
+	 */
 	@Resource
 	public void setSuperSessionFactory(SessionFactory sessionFactory) {
 		this.setSessionFactory(sessionFactory);

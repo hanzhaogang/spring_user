@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户添加</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/user/userAdd.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/screen.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/user/userAdd.css" />
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-1.9.0.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/jquery.validate.js"></script>
 
@@ -59,33 +59,36 @@
 </head>
 
 <body>
-    <div>
+    <div id="content">
 	<!-- 此时没有写action,直接提交会提交给/add -->
     	<sf:form id="name" name="name" method="post" modelAttribute="user" >
-    		<table width="700" align="center" border="1">
+        	<table width="500" cellspacing="0" cellPadding="0" id="listTable" >
+        		<thead><tr><td colspan="2">添加用户</td></tr></thead>
+        		<tbody>
     			<tr>
-    				<td>用户名:</td>
+    				<td class="tableHeader">用户名:</td>
     				<td><sf:input name="username" path="username" />  </td>
     			</tr>
     			<tr>
-    				<td>用户密码:</td>
+    				<td class="tableHeader">用户密码:</td>
     				<td><sf:password name="password" path="password" />  </td>
     			</tr>
     			<tr>
-    				<td>确认用户密码:</td>
+    				<td class="tableHeader">确认用户密码:</td>
     				<td><input name="confirm_password" type="password" /> </td>
     			</tr>
     			<tr>
-    				<td>用户昵称:</td>
+    				<td class="tableHeader">用户昵称:</td>
     				<td><sf:input name="nickname" path="nickname" /></td>
     			</tr>
     			<tr>
-    				<td>用户邮箱:</td>
+    				<td class="tableHeader">用户邮箱:</td>
     				<td><sf:input name="email" path="email" /> </td>
     			</tr>
     			<tr>
-    				<td colspan="2"><input type="submit" value="用户添加" /></td>
+    				<td colspan="2"><input type="submit" value="用户添加" /><input type="reset"/></td>
     			</tr>
+    			</tbody>
     		</table>
     	</sf:form>
         <h2 id = "promption">${exception.message }</h2>

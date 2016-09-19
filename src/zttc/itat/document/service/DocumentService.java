@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import zttc.itat.document.dao.DocumentDao;
 import zttc.itat.document.dao.IDocumentDao;
 import zttc.itat.model.Pager;
 import zttc.itat.document.model.Document;
@@ -22,6 +23,7 @@ public class DocumentService implements IDocumentService {
 		return documentDao;
 	}
 
+	// inject the documentDao in the setter method, by name
 	@Resource
 	public void setDocumentDao(IDocumentDao documentDao) {
 		this.documentDao = documentDao;

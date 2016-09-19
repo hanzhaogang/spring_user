@@ -6,20 +6,7 @@
 			<a href="/main/flsm/201210/23/t20121023_589003.shtml" target="_blank">法律声明</a> | 
 			<a href="/zxgk/lx/201210/22/t20121022_588656.shtml" target="_blank">联系我们</a>
 		</p>
-
 		<p>地址：昌平区小汤山未来科技城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：102211</p>
-
-		<p>
-			<a href="http://www.comac.cc" target="_blank">中国商用飞机有限责任公司</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网址：
-			<a href="http://www.comac.cc" target="_blank">http://www.comac.cc</a>
-		</p>
-
-		<p>
-			技术支持：
-			<a href="http://www.ce.cn" target="_blank">中国经济网</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;网址：
-			<a href="http://www.ce.cn" target="_blank">http://www.ce.cn</a>
-		</p>
-
 		<p>
 			<script src="http://s95.cnzz.com/stat.php?id=5354960&web_id=5354960&show=pic" type="text/JavaScript"></script>
 			CopyRight By COMAC BASTRI@2012-2015<br />

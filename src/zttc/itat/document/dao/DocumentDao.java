@@ -18,6 +18,24 @@ import zttc.itat.model.Pager;
 import zttc.itat.model.SystemContext;
 
 @SuppressWarnings("unchecked")
+/*
+ * 用于将数据访问层 (DAO 层 ) 的类标识为 Spring Bean。具体只需将该注解标注在 DAO 类上即可。同时，为了让 Spring 能够扫描类路径中的类并识别出 @Repository 注解，
+ * 需要在 XML 配置文件中启用 Bean 的自动扫描功能，这可以通过 <context:component-scan/> 实现。如下所示：
+
+ // 首先使用 @Repository 将 DAO 类声明为 Bean 
+ package bookstore.dao; 
+ @Repository 
+ public class UserDaoImpl implements UserDao{ …… } 
+
+ // 其次，在 XML 配置文件中启动 Spring 的自动扫描功能
+ <beans … > 
+    ……
+ <context:component-scan base-package=”bookstore.dao” /> 
+……
+ </beans> 
+如此，我们就不再需要在 XML 中显式使用 <bean/> 进行 Bean 的配置。Spring 在容器初始化时将自动扫描 base-package 指定的包及其子包下的所有 class 文件，所有标注了 
+@Repository 的类都将被注册为 Spring Bean。
+ */
 @Repository("documentDao")
 public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 
@@ -54,62 +72,19 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 
 	@Override
 	public Pager<Document> find() {
-		int size = SystemContext.getSize();
-		int offset = SystemContext.getOffset();
 		Query query = this.getSession().createQuery("from Document");
-		query.setFirstResult(offset).setMaxResults(size);
-		List<Document> datas = query.list();
-		Pager<Document> us = new Pager<Document>();
-		us.setDatas(datas);
-		us.setOffset(offset);
-		us.setSize(size);
-		long total = (Long) this.getSession()
-				.createQuery("select count(*) from Document").uniqueResult();
-		us.setTotal(total);
-		return us;
+		Pager<Document> pager = new Pager<Document>();
+        pager = setPagerByQuery(query);
+		return pager;
 	}
 
 	@Override
 	public Pager<Document> search(Map<String, Object> searchCondition) {
-		int size = SystemContext.getSize();
-		int offset = SystemContext.getOffset();
-
-		SearchConditionResolver conditionResolver = new SearchConditionResolver(searchCondition);
-		Query query = null; 
-		Boolean onlyName = conditionResolver.onlyName();
-		if (onlyName) {
-			query = this.getSession() .createQuery("from Document where name=?") .setParameter(0, searchCondition.get("name"));
-		}
-		if (conditionResolver.onlyType()) {
-			query = this.getSession() .createQuery("from Document where type=?") .setParameter(0, searchCondition.get("type"));
-		}
-		if (conditionResolver.onlyCreater()) {
-			query = this.getSession() .createQuery("from Document where creater=?") .setParameter(0, searchCondition.get("creater"));
-		}
-		if (conditionResolver.onlyCreateTime()) {
-			query = this.getSession() .createQuery("from Document where createTime=?") .setParameter(0, searchCondition.get("createTime"));
-		}
-        assert query != null;
-		query.setFirstResult(offset).setMaxResults(size);
-		List<Document> datas = query.list();
-		Pager<Document> us = new Pager<Document>();
-		us.setDatas(datas);
-		us.setOffset(offset);
-		us.setSize(size);
-		String queryString = query.toString();
-		System.out.println("this is the queryString:-------->"+queryString+"<--------------------------");
-		long total = (long) datas.size();
-		us.setTotal(total);
-		return us;
-
-		// String hql =
-		// getDocumentSelect()+" from Document d where d.name= '%"+name+"%' ";
-		// return this.find(hql);
+		Query query = createQueryByConditionResolver(searchCondition);
+		Pager<Document> pager = new Pager<Document>();
+        pager = setPagerByQuery(query);
+		return pager;
 	}
-
-//	private String getDocumentSelect() {
-//		return "select new document(d.id,d.name,d.type,d.creater,d.createTime,d.path)";
-//	}
 
 	@Override
 	public Document loadByName(String name) {
@@ -125,7 +100,6 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 		initTreeNode(cts);
 		System.out.println(cts.toString());
 		return cts;
-
 	}
 
 	public static void initTreeNode(List<DocumentTree> cts) {
@@ -140,11 +114,11 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 	}
 
 	public <N extends Object>List<N> listBySql(
-			String sql, 
-			Object[] args,
-			Map<String, Object> alias, 
-			Class<?> clz, 
-			boolean hasEntity) {
+    			String sql, 
+    			Object[] args,
+    			Map<String, Object> alias, 
+    			Class<?> clz, 
+    			boolean hasEntity) {
 		SQLQuery sq = getSession().createSQLQuery(sql);
 		if(hasEntity) {
 			sq.addEntity(clz);
@@ -152,5 +126,53 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 			sq.setResultTransformer(Transformers.aliasToBean(clz));
 		};	
 		return sq.list();
+	}
+    
+	private Pager<Document> setPagerByQuery (Query query) {
+		Pager<Document> pager = new Pager<Document>();
+
+		int size = SystemContext.getSize();
+		pager.setSize(size);
+
+		int offset = SystemContext.getOffset();
+		pager.setOffset(offset);
+
+		query.setFirstResult(offset).setMaxResults(size);
+		List<Document> datas = query.list();
+		pager.setDatas(datas);
+		
+		long total = 0L;
+        if (query.toString().contains("where")) {
+            String    queryString =        query.toString().substring(10, 36);
+            System.out.print("caution!---------"+query.toString());
+            total = (Long) this.getSession().createQuery("select count(*) "+queryString).uniqueResult();
+        } else {
+            total = (Long) this.getSession().createQuery("select count(*) from Document ").uniqueResult();
+        }
+		pager.setTotal(total);
+
+	    return pager;	
+	}
+
+	private Query createQueryByConditionResolver(Map<String, Object> searchCondition) {
+		Query query = null;
+		SearchConditionResolver conditionResolver = new SearchConditionResolver(searchCondition);
+		if (conditionResolver.onlyName()) {
+			query = this.getSession() .createQuery("from Document where name=?") 
+					    .setParameter(0, searchCondition.get("name"));
+		}
+		if (conditionResolver.onlyType()) {
+			query = this.getSession() .createQuery("from Document where type=?") 
+					    .setParameter(0, searchCondition.get("type"));
+		}
+		if (conditionResolver.onlyCreater()) {
+			query = this.getSession() .createQuery("from Document where creater=?") 
+					    .setParameter(0, searchCondition.get("creater"));
+		}
+		if (conditionResolver.onlyCreateTime()) {
+			query = this.getSession() .createQuery("from Document where createTime=?") 
+					    .setParameter(0, searchCondition.get("createTime"));
+		}
+		return query;
 	}
 }

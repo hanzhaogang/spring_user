@@ -23,7 +23,6 @@
 				}
 			},
 			view : {
-				dblClickExpand : false,
 				selectedMulti : false
 			},
 			async : {
@@ -33,10 +32,12 @@
 			},
 			callback : {
 				onClick : function(event, treeId, treeNode) {
+                    if (treeNode.id>0) {
 					$("#showDetails").attr(
 							"src",
 							"http://localhost:8080/spring_user/doc/"
 									+ treeNode.id);
+                    }
 				}
 			}
 		};

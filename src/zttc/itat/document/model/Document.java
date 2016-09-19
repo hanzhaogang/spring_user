@@ -20,6 +20,22 @@ public class Document {
 	//public static final String ROOT_JiSuan= "计算文件";
 	//public static final int ROOT_JiSuan_ID = MAX_INT-2;
 
+	public Document(int id, int pid, String name, String type, String creater,
+			String createTime, String path) {
+		super();
+		this.id = id;
+		this.pid = pid;
+		this.name = name;
+		this.type = type;
+		this.creater = creater;
+		this.createTime = createTime;
+		this.path = path;
+	}
+
+	public Document() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private int id;
     private int pid;
 	private String name;

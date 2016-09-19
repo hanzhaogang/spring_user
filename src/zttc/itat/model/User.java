@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/*
+ *  @Entity is a JPA definition. which means this bean is an entity bean. an entity bean has no difference with a POJO,
+ *  except it has been mapped into a db. 
+ */
 @Entity
 @Table(name="t_user")
 public class User {

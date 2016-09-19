@@ -8,6 +8,10 @@ public interface IUserDao {
 	public void update(User user);
 	public void delete(int id);
 	public User load(int id);
-	public Pager<User> find();
 	public User loadByUsername(String username);
+	/* 
+	 * Usually, we use pager in the server end, not the front end. 
+	 * but, we should use AJAX, when the front end need the next page.
+	 */
+	public Pager<User> find();
 }

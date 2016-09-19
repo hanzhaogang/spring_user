@@ -13,6 +13,8 @@
          http://www.springframework.org/schema/tx 
          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
          
+    <!-- we do not need to config every beans in this file, instead, we can add @Repository and others notations before some classes to denote it is a bean, 
+    and after we write below configurations, spring will auto detect these beans and manage them for us.   -->
 	<!-- 打开Spring的Annotation支持 -->
 	<context:annotation-config />
 	<!-- 设定Spring 去哪些包中找Annotation -->
@@ -76,6 +78,7 @@
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
+    <!-- my own bean configuration goes here -->
 
 	<!-- 配置Spring的事务处理 -->
 	<!-- 创建事务管理器-->

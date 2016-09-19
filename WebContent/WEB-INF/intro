@@ -1,0 +1,10 @@
+this is the prototype system of the dbApp4At. after 3 month of studying and coding.
+
+
+
+should first  import this project into an eclipse or sts, 
+then reference to this post to add jre lib and tomcat to the project:
+http://stackoverflow.com/questions/4284700/error-httpservletrequest-refers-to-the-missing-type-string 
+
+http://stackoverflow.com/questions/32692321/tomcat-severe-exception-starting-filter-corsfilter-classnotfoundexception#
+refresh, clean and build - try again.

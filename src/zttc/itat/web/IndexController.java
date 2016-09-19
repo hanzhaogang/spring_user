@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import zttc.itat.model.User;
 import zttc.itat.service.IUserService;
 
+/*
+ * In Spring MVC, Basically all requests are mapped to the DispatcherServlet which acts as a front controller. 
+ * The DispatcherServlet will then call the controller whose annotations match the incoming request. 
+ * This is neater than having to write these mappings yourself in the web.xml
+ */
 @Controller
 @SessionAttributes("loginUser")
 public class IndexController {

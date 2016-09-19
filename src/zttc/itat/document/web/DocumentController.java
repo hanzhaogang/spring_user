@@ -58,11 +58,7 @@ public class DocumentController {
 	@RequestMapping(value="/search",method=RequestMethod.POST)
 	public String search(String name, String type, String creater, String createTime, Model model) {
         Map<String,Object> searchCondition = new HashMap<String,Object>();		
-        searchCondition.put("name", name);
-        searchCondition.put("type", type);
-        searchCondition.put("creater", creater);
-        searchCondition.put("createTime", createTime);
-        
+        searchCondition = setSearchCondition(name,type,creater,createTime);
 	    model.addAttribute("pagers", documentService.search(searchCondition));
 		return "doc/search";
 	}
@@ -156,4 +152,12 @@ public class DocumentController {
         return document;
 	}
 
+	private Map<String, Object> setSearchCondition(String name, String type, String creater, String createTime) {
+		Map<String, Object> searchCondition = new HashMap<String, Object>();
+        searchCondition.put("name", name);
+        searchCondition.put("type", type);
+        searchCondition.put("creater", creater);
+        searchCondition.put("createTime", createTime);
+	    return searchCondition;
+	}
 }
