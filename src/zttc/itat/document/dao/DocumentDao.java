@@ -1,15 +1,18 @@
 package zttc.itat.document.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.mybatis.spring.support.SqlSessionDaoSupport;
+//import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import zttc.itat.document.model.Document;
@@ -37,44 +40,56 @@ import zttc.itat.model.SystemContext;
 @Repository 的类都将被注册为 Spring Bean。
  */
 @Repository("documentDao")
-public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
+//public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
+public class DocumentDao extends SqlSessionDaoSupport implements IDocumentDao {
+
+	/*@Resource
+	public void setSuperSessionFactory(SessionFactory sessionFactory) {
+		//this.setSessionFactory(sessionFactory);
+	}
+	*/
 
 	@Resource
-	public void setSuperSessionFactory(SessionFactory sessionFactory) {
-		this.setSessionFactory(sessionFactory);
-	}
+    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory){
+        super.setSqlSessionFactory(sqlSessionFactory);
+    }
 
 	@Override
 	public void add(Document document) {
-		this.getHibernateTemplate().save(document);
+		//this.getHibernateTemplate().save(document);
 	}
 
 	@Override
 	public void update(Document document) {
-		this.getHibernateTemplate().update(document);
+		//this.getHibernateTemplate().update(document);
 	}
 
 	@Override
 	public void delete(int id) {
-		Document document = this.load(id);
-		this.getHibernateTemplate().delete(document);
+		//Document document = this.load(id);
+		//this.getHibernateTemplate().delete(document);
+
 	}
 
 	@Override
 	public Document load(int id) {
-		return this.getHibernateTemplate().load(Document.class, id);
+		//return this.getHibernateTemplate().load(Document.class, id);
+		//Document document = new Document();
+		return null;
 	}
 
 	@Override
 	public List<Document> list() {
-		return this.getSession().createQuery("from Document").list();
+		//return this.getSession().createQuery("from Document").list();
+		List<Document> documentList = new ArrayList<Document>();
+		return documentList;
 	}
 
 	@Override
 	public Pager<Document> find() {
-		Query query = this.getSession().createQuery("from Document");
+		//Query query = this.getSession().createQuery("from Document");
 		Pager<Document> pager = new Pager<Document>();
-        pager = setPagerByQuery(query);
+        //pager = setPagerByQuery(query);
 		return pager;
 	}
 
@@ -88,9 +103,8 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 
 	@Override
 	public Document loadByName(String name) {
-		return (Document) this.getSession()
-				              .createQuery("from Document where name=?")
-				              .setParameter(0, name).uniqueResult();
+		//return (Document) this.getSession() .createQuery("from Document where name=?") .setParameter(0, name).uniqueResult();
+		return null;
 	}
 
 	@Override
@@ -113,25 +127,30 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 		}
 	}
 
+	// 
 	public <N extends Object>List<N> listBySql(
     			String sql, 
     			Object[] args,
     			Map<String, Object> alias, 
     			Class<?> clz, 
     			boolean hasEntity) {
-		SQLQuery sq = getSession().createSQLQuery(sql);
+		/*SQLQuery sq = getSession().createSQLQuery(sql);
 		if(hasEntity) {
 			sq.addEntity(clz);
 		} else {
 			sq.setResultTransformer(Transformers.aliasToBean(clz));
 		};	
 		return sq.list();
+		*/
+		
+		//return new ArrayList<N>();
+		return null;
 	}
     
 	private Pager<Document> setPagerByQuery (Query query) {
 		Pager<Document> pager = new Pager<Document>();
 
-		int size = SystemContext.getSize();
+		/* int size = SystemContext.getSize();
 		pager.setSize(size);
 
 		int offset = SystemContext.getOffset();
@@ -151,12 +170,13 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
         }
 		pager.setTotal(total);
 
+*/
 	    return pager;	
 	}
 
 	private Query createQueryByConditionResolver(Map<String, Object> searchCondition) {
 		Query query = null;
-		SearchConditionResolver conditionResolver = new SearchConditionResolver(searchCondition);
+		/*SearchConditionResolver conditionResolver = new SearchConditionResolver(searchCondition);
 		if (conditionResolver.onlyName()) {
 			query = this.getSession() .createQuery("from Document where name=?") 
 					    .setParameter(0, searchCondition.get("name"));
@@ -173,6 +193,7 @@ public class DocumentDao extends HibernateDaoSupport implements IDocumentDao {
 			query = this.getSession() .createQuery("from Document where createTime=?") 
 					    .setParameter(0, searchCondition.get("createTime"));
 		}
+		*/
 		return query;
 	}
 }

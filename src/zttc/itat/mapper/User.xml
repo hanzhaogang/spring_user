@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 
+<mapper namespace="com.yihaomen.mybatis.models.UserMapper">
+    <select id="selectUserByID" parameterType="int" resultType="User">
+        select * from `user` where id = #{id}
+    </select>
+</mapper> 
+-->
+
+
+<mapper namespace="zttc.itat.inter.IUserOperation">
+    <select id="load" parameterType="int" resultType="User">
+        select * from `t_user` where id = #{id}
+    </select>
+    
+    <select id="loadByUsername" parameterType="String" resultType="User">
+        select * from `t_user` where username = #{username}
+    </select>
+    
+
+<!--执行增加操作的SQL语句。id和parameterType 
+       分别与IUserOperation接口中的addUser方法的名字和 
+       参数类型一致。以#{name}的形式引用Student参数 
+       的name属性，MyBatis将使用反射读取Student参数 
+       的此属性。#{name}中name大小写敏感。引用其他 
+       的gender等属性与此一致。seGeneratedKeys设置 
+       为"true"表明要MyBatis获取由数据库自动生成的主 
+       键；keyProperty="id"指定把获取到的主键值注入 
+       到Student的id属性-->
+    <insert id="add" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(userName,password,email,nickname) values(#{userName},#{password},#{email},#{nickname}) 
+    </insert>
+    
+    
+    <update id="update" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    	UPDATE User SET username = @{username}, password = @{password}, email = @{email}, nickname = @{nickname} WHERE id=#{id}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+    	<!-- standard delete sql :  -->
+        DELETE FROM user WHERE id=#{id} 
+    </delete>
+
+</mapper> 
+	<!--  public void add(User user);
+	public void update(User user);
+	public void delete(int id);
+	public User load(int id);
+	public User loadByUsername(String username);
+	
+		private String username;
+	private String password;
+	private String email;
+	private String nickname;
+ -->

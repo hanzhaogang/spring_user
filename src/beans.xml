@@ -13,6 +13,8 @@
          http://www.springframework.org/schema/tx 
          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
          
+<!--本示例采用DBCP连接池，应预先把DBCP的jar包复制到工程的lib目录下。 -->
+
     <!-- we do not need to config every beans in this file, instead, we can add @Repository and others notations before some classes to denote it is a bean, 
     and after we write below configurations, spring will auto detect these beans and manage them for us.   -->
 	<!-- 打开Spring的Annotation支持 -->
@@ -21,8 +23,8 @@
 	<context:component-scan base-package="zttc.itat" />
 
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close">
+<!--  destory-method = close, it means, when the database connection is not used, return this connection into the connection pool for further useage.  -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
@@ -44,48 +46,49 @@
 	<!-- 导入Src目录下的jdbc.properties文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
 	
-	
+	<!-- We can only define one bean for a class, if we define two:
+	No unique bean of type [org.apache.ibatis.session.SqlSessionFactory] is defined: expected single matching bean but found 2: [sessionFactory, sqlSessionFactory]	 -->
 	<!--创建Spring的SessionFactory工厂 -->
-	<!-- 如果使用的是Annotation的方式，不能使用LocalSessionFactoryBean,而应该使用 org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 注入数据源 -->
+        <!--dataSource属性指定要用到的连接池-->
 		<property name="dataSource" ref="dataSource" />
 		<!-- 设置Spring去那个包中查找相应的实体类 , 不正确设置的话报org.hibernate.hql.ast.QuerySyntaxException: XX is not mapped 
 		[from XX]错误
 		-->
-		<property name="packagesToScan">
-		<list>
-			<value>zttc.itat.model</value>
-			<value>zttc.itat.document.model</value>
-		</list>
-		</property>
-		<property name="hibernateProperties">
-			<!-- <value> hibernate.dialect=org.hibernate.dialect.HSQLDialect </value> -->
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.format_sql">false</prop>
-			</props>
-		</property>
+  <!--configLocation属性指定mybatis的核心配置文件-->
+     <property name="configLocation" value="classpath:config/Configuration.xml" />
+     <!-- 所有配置的mapper文件 -->
+     <property name="mapperLocations" value="classpath*:zttc/itat/mapper/*.xml" />
 	</bean>
 	
-	
+
 	<!-- 开启HibernateTemplate，并且为其注入SessionFactory
 	使用HibernateTemplate不太方便的就是要获取session得通过getSessionFactory()方法获取 -->
+<!-- 
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+ -->	
 
+ 
+ 
+ 
+  <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+     <!--sqlSessionFactory属性指定要用到的SqlSessionFactory实例-->
+     <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+     <!--mapperInterface属性指定映射器接口，用于实现此接口并生成映射器对象-->
+     <property name="mapperInterface" value="zttc.itat.inter.IUserOperation" />
+  </bean>
+  
     <!-- my own bean configuration goes here -->
 
 	<!-- 配置Spring的事务处理 -->
 	<!-- 创建事务管理器-->
-	<bean id="txManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+ <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource" />
+    </bean>
+   
 
 
 	<!-- 配置AOP，Spring是通过AOP来进行事务管理的 -->
@@ -95,21 +98,30 @@
 			就会导致数据不完整，所以事务不应该在DAO层处理，而应该在service，这也就是Spring所提供的一个非常方便的工具，声明式事务 -->
 		<aop:pointcut id="allMethods" expression="execution(* zttc.itat.service.*.*(..))" />
 		<!-- 通过advisor来确定具体要加入事务控制的方法 -->
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods" />
+		<!-- <aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods" /> -->
 	</aop:config>
 
+	<!-- 
+	<tx:annotation-driven transaction-manager="txManager"/>
+ -->
 
-	<!-- 配置哪些方法要加入事务控制 -->
-	<tx:advice id="txAdvice" transaction-manager="txManager">
+	<!-- 配置哪些方法要加入事务控制
+	 让所有的方法都加入事务管理，为了提高效率，可以把一些查询之类的方法设置为只读的事务 
+	  以下方法都是可能设计修改的方法，就无法设置为只读 -->
+	<!--<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			<!-- 让所有的方法都加入事务管理，为了提高效率，可以把一些查询之类的方法设置为只读的事务 -->
 			<tx:method name="*" propagation="REQUIRED" read-only="true" />
-			<!-- 以下方法都是可能设计修改的方法，就无法设置为只读 -->
 			<tx:method name="add*" propagation="REQUIRED" />
 			<tx:method name="del*" propagation="REQUIRED" />
 			<tx:method name="update*" propagation="REQUIRED" />
 			<tx:method name="save*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
-	
+	  -->
+	 
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+     <property name="basePackage" value="zttc.itat.inter" />    
+  </bean> 
+  
+  
 </beans>
