@@ -1,5 +1,7 @@
 package zttc.itat.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -48,7 +50,9 @@ public class UserService implements IUserService {
 
 	@Override
 	public Pager<User> find() {
-		return userDao.find();
+		Pager<User> listUser = userDao.find();
+		//Pager<User> pager = new Pager<User>(listUser);
+		return listUser;
 	}
 
 	@Override

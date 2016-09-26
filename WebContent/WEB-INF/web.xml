@@ -48,6 +48,10 @@ the web application will not start up. -->
 		<param-value>classpath*:beans.xml</param-value>
 	</context-param>
 
+	<!-- sitemesh filter that filts all urls -->
+	<!-- a filter chain is composed by all filters in this web.xml file. 
+	     so the order of filter does matter: the first filter in the filter chain is the first 
+	     filter in this web.xml file -->
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
@@ -57,6 +61,7 @@ the web application will not start up. -->
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- character filter that filts all urls -->
 	<filter>
 		<filter-name>CharacterFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -92,6 +97,7 @@ the web application will not start up. -->
 	</filter-mapping>
 	 -->
 
+	<!-- a systemcontext filter that filters all urls -->
 	<filter>
 		<filter-name>SystemContextFilter</filter-name>
 		<filter-class>zttc.itat.web.SystemContextFilter</filter-class>
@@ -101,6 +107,7 @@ the web application will not start up. -->
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- a login filter that filters all urls that requires a login -->
 	<filter>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>zttc.itat.web.LoginFilter</filter-class>

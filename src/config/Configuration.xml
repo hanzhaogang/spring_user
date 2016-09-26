@@ -2,9 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
+<!-- a myBatis configuration file -->
 <configuration>
+	<!-- myBatis aliase -->
     <typeAliases>
         <typeAlias alias="User" type="zttc.itat.model.User"/>
+        <typeAlias alias="Pager" type="zttc.itat.model.Pager"/>
     </typeAliases>
 
 <!-- myBatis does not need a jdbc.properties like Hibernate. the jdbc properties configuration goes here.  -->
@@ -12,10 +15,10 @@
         <environment id="development">
         <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-            <property name="driver" value="com.mysql.jdbc.Driver"/>
-            <property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_user" />
-            <property name="username" value="root"/>
-            <property name="password" value="dt1dnzhct"/>
+            	<property name="driver" value="com.mysql.jdbc.Driver"/>
+            	<property name="url" value="jdbc:mysql://127.0.0.1:3306/spring_user" />
+            	<property name="username" value="root"/>
+            	<property name="password" value="dt1dnzhct"/>
             </dataSource>
         </environment>
     </environments>

@@ -1,6 +1,8 @@
 package zttc.itat.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -86,10 +88,25 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 	    return userOperation.loadByUsername(username);
 	}
 
-	// 该批注的作用是给编译器一条指令，告诉它对被批注的代码元素内部的某些警告保持静默。
+	/* this line gives the compiler an instructor, which means that the compiler should keep silence 
+	 * for some warning in the codes that this line is for. 
+	 * 
+	 *  the real SQL statement should be: 
+	 *  SELECT keyword FROM table WHERE id='id_number' ORDER BY keyword LIMIT 2 OFFSET 1; or: (page size 2)
+	 *  SELECT keyword FROM table WHERE id='id_number' ORDER BY keyword LIMIT 2, 1; (page size 1)
+	 *  
+	 *  two parameters here: page size& offset.
+	 *  
+	 *  to achieve a pager, we can have different ways. 
+	 *  1: plugin of myBatis , which is actually a filter chain, which is called Interceptor in myBatis. 
+	 *  2: filter chain of java ee, which is more common. 
+	 *  
+	 *  question: what is the difference? 
+	 */ 
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public Pager<User> find() {
+	public Pager<User> find() { 
 		int size = SystemContext.getSize();
 		int offset = SystemContext.getOffset();
 		/*Query query = this.getSession().createQuery("from User");
@@ -97,16 +114,60 @@ public class UserDao extends SqlSessionDaoSupport implements IUserDao {
 		List<User> datas = query.list();
 		*/
 
+	    IUserOperation userOperation = this.getSqlSession().getMapper(IUserOperation.class);
+		List<User> listUser = new ArrayList<User>();
+	    listUser = userOperation.find(size,offset);
+
 		Pager<User> userPager = new Pager<User>();
-		/*userPager.setDatas(datas);
+		userPager.setDatas(listUser);
 		userPager.setOffset(offset);
 		userPager.setSize(size);
-		long total = (Long)this.getSession()
-					           .createQuery("select count(*) from User")
-					           .uniqueResult();
+		//long total = (Long)this.getSqlSession() .createQuery("select count(*) from User") .uniqueResult();
+		long total = (Long)countAll();
 		userPager.setTotal(total);
-		*/
+		
+	    //Map<String, Integer> resultMap = userOperation.find(size,offset);
+	    /*
+	     * org.apache.ibatis.exceptions.TooManyResultsException: 
+	     * Expected one result (or null) to be returned by selectOne(), but found: 3
+	     */
+
+	    /*
+	     * for each grammer
+	     */
+	    for(User user:listUser) {
+	    	System.out.println(user.getNickname());	
+	    }
+	    //System.out.println(listUser);
 		return userPager;
 	}
+	
+	
+	/*
+	 * find all users in the table t_user;
+	 */
+	public List<User> findAll() {
+	    IUserOperation userOperation = this.getSqlSession().getMapper(IUserOperation.class);
+		List<User> allUser = userOperation.findAll();
+		return allUser;
+	}
+	
+	/*
+	 * count how many users are there in the t_user table, which is based on the findAll function.
+	 */
+	public long countAll() {
+		List<User> allUser = findAll();
+		/*
+		 *  List.size() returns an int value, and the max of an int value is 2^32 = 65525^2, it is a billon levle number.
+		 *  2^10=1024
+		 *  
+		 */
+		return allUser.size();
+
+		
+	}
+	
+	
+	
 
 }

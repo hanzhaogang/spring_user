@@ -1,5 +1,7 @@
 package zttc.itat.dao;
 
+import java.util.List;
+
 import zttc.itat.model.Pager;
 import zttc.itat.model.User;
 
@@ -14,4 +16,5 @@ public interface IUserDao {
 	 * but, we should use AJAX, when the front end need the next page.
 	 */
 	public Pager<User> find();
+	//public List<User> find();
 }

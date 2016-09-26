@@ -1,7 +1,11 @@
 package zttc.itat.model;
 
 import java.util.List;
+import java.util.Map;
 
+/*
+ * a Pager class, which has a generics parameter
+ */
 public class Pager<T> {
 
 	/**
@@ -20,6 +24,35 @@ public class Pager<T> {
 	 * 分页的数据
 	 */
 	private List<T> datas;
+
+	
+	/*
+	 * default constructor
+	 */
+	public Pager() {
+		
+	}
+
+	/*
+	 * constructor with List
+	 */
+	public Pager(List<T> listUser) {
+		datas = listUser;
+		
+	}
+
+
+	/*
+	 * construct a Pager based on a hashmap contained the result. 
+	 */
+	public Pager(Map<String, T> resultMap) {
+		/*
+		 * for
+		 * resultMap.get
+		 */
+		
+		
+	}
 
 	public List<T> getDatas() {
 		return datas;

@@ -25,6 +25,7 @@ public class UserController {
 	public IUserService getUserService() {
 		return userService;
 	}
+
 	@Resource
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
@@ -33,6 +34,9 @@ public class UserController {
 	@RequestMapping(value={"/users","/"},method=RequestMethod.GET)
 	public String list(Model model) {
 		model.addAttribute("pagers", userService.find());
+		
+		System.out.println("UserController"  );
+
 		return "user/list";
 	}
 	

@@ -2,6 +2,9 @@ package zttc.itat.model;
 
 public class SystemContext {
 
+	/* ThreadLocal supports genarical 
+	 * which means each thread can have a single variable 
+	 */
 	private static ThreadLocal<Integer> offset = new ThreadLocal<Integer>();
 	private static ThreadLocal<Integer> size = new ThreadLocal<Integer>();
 	

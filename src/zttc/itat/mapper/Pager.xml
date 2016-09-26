@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- there should not be any blank line in the head of this file.
+	 the ?xml line should be the first line of this file -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
@@ -12,35 +14,19 @@
 -->
 
 
-<mapper namespace="zttc.itat.inter.IUserOperation">
+<mapper namespace="zttc.itat.inter.IPagerOperation">
     <select id="load" parameterType="int" resultType="User">
         select * from `t_user` where id = #{id}
     </select>
-    <!--  myBatis have two types of result: resultType& resultMap
-    resultType can be a specific type, or a "map" or "hashmap", 
-    in which the key is the column name, and the value is the actual value.
-    resultMap is a map like the ResultSet in JDBC. -->
+    
     <select id="loadByUsername" parameterType="String" resultType="User">
         select * from `t_user` where username = #{username}
     </select>
     
-
-	<!--  more than one parameters, so the parameterType should not be defined
-	if we specific Pager as the resultType, but without typeAliase declareration in the Configuration.xml file,
-	compiler will complain: cannot find the Pager. 
-	
-	if we use Pager here, the find interface will return 3 Pager instances.
-	in myBatis, we use Map&HashMap or   -->
-
-	<!-- if we use map or hashmap here as the resultType, it will return a List<Map<String, Object>>,
-	in which one column for one map, and the list is composed by maps standing for all rows -->
-    <select id="find"  resultType="User"> 
-     	SELECT * FROM `t_user`  LIMIT #{size} OFFSET #{offset} 
+	<!--  more than one parameters, so the parameterType should not be defined -->
+    <select id="find"  resultType="Pager"> 
     </select>
-
-    <select id="findAll"  resultType="User"> 
-     	SELECT * FROM `t_user`  
-    </select>
+   <!--  	SELECT * FROM `t_user`  LIMIT #{size} OFFSET #{offset} -->
 
 <!--执行增加操作的SQL语句。id和parameterType 
        分别与IUserOperation接口中的addUser方法的名字和 

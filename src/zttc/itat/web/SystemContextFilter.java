@@ -11,6 +11,9 @@ import javax.servlet.ServletResponse;
 
 import zttc.itat.model.SystemContext;
 
+/*
+ * javax.servlet.Filter, a filter stands before a servlet. 
+ */
 public class SystemContextFilter implements Filter {
 
 	@Override
@@ -32,8 +35,11 @@ public class SystemContextFilter implements Filter {
 		try {
 			SystemContext.setOffset(offset);
 			SystemContext.setSize(15);
+			/* pass the request to the next filter in the filter chain. 
+			*if no filter in the chain, to the servlet the request if for.
+			*/
 			chain.doFilter(req, resp);
-		}finally {
+		}finally {// remove, so next request can have a different value.
 			SystemContext.removeOffset();
 			SystemContext.removeSize();
 		}

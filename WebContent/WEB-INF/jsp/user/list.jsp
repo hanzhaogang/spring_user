@@ -35,7 +35,7 @@ function delcfm() {
 	    	</tr>
 		</thead>
         
-		<c:if test="${pagers.total le 0 }">
+		<c:if test="${pagers.total le 0 }"> <!--  less or equal to 0 -->
 			<tr>
 				<td colspan="6">目前还没有用户数据</td>
 			</tr>

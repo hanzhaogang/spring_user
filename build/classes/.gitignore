@@ -1,2 +1,5 @@
-/zttc/
+/beans.xml
 /config/
+/jdbc.properties
+/log4j.properties
+/zttc/
